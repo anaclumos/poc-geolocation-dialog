@@ -4,12 +4,22 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
     <title>Document</title>
     <script>
-      function alertGeolocation() {
-        navigator.geolocation.getCurrentPosition(function (position) {
-          alert(position.coords.latitude + ' ' + position.coords.longitude)
-        })
+      function getGeolocation() {
+        const locationSpan = document.getElementById('location')
+        locationSpan.innerText = 'Working On It...'
+        navigator.geolocation.getCurrentPosition(
+          (position) => {
+            var latitude = position.coords.latitude
+            var longitude = position.coords.longitude
+            document.getElementById('location').innerText = 'Latitude: ' + latitude + ', Longitude: ' + longitude
+          },
+          (error) => {
+            locationSpan.innerText = 'error: ' + error.message
+          }
+        )
       }
       function injectFakeNavigator() {
         var script = document.createElement('script')
@@ -19,7 +29,9 @@
     </script>
   </head>
   <body>
-    <button onclick="alertGeolocation" id="btn">Get Location</button>
-    <button onclick="injectFakeNav()" id="btn">Inject Fake Navigator</button>
+    <h1>Geolocation Shimming Demo</h1>
+    <button onclick="getGeolocation()" id="btn">Get Location</button>
+    <button onclick="injectFakeNavigator()" id="btn">Inject Fake Navigator</button>
+    <p>Location: <span id="location">Unknown</span></p>
   </body>
 </html>
