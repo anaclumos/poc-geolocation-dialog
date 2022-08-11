@@ -17,7 +17,7 @@
             document.getElementById('location').innerText = 'Latitude: ' + latitude + ', Longitude: ' + longitude
           },
           (error) => {
-            locationSpan.innerText = 'error: ' + error.message
+            locationSpan.innerText = 'Error: ' + error.message
           }
         )
       }
@@ -25,13 +25,16 @@
         var script = document.createElement('script')
         script.src = 'nav.js'
         document.body.appendChild(script)
+        document.getElementById('btn2').innerText = 'Injected.'
+        document.getElementById('btn2').disabled = true
       }
     </script>
   </head>
   <body>
     <h1>Geolocation Shimming Demo</h1>
-    <button onclick="getGeolocation()" id="btn">Get Location</button>
-    <button onclick="injectFakeNavigator()" id="btn">Inject Fake Navigator</button>
-    <p>Location: <span id="location">Unknown</span></p>
+    <button onclick="getGeolocation()" id="btn1">Get Location</button>
+    <button onclick="injectFakeNavigator()" id="btn2">Inject Fake Navigator</button>
+    <h2>Location</h2>
+    <p id="location">Unknown</p>
   </body>
 </html>

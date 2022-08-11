@@ -10,6 +10,7 @@ body {
   font-size: 1.6rem;
   color: #fff;
   text-align: center;
+  padding: 1rem;
 }
 
 button {
@@ -23,4 +24,9 @@ button {
 menu {
   display: flex;
   padding: 1.6rem;
+}
+
+iframe {
+  width: 100%;
+  height: auto;
 }
